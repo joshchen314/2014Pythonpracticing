@@ -1,0 +1,17 @@
+'''
+to calculate m*n
+'''
+
+def nnm(nn,mm):
+	n=1
+	m=1
+	while n<=nn: 
+		while m<=mm: 
+			print(n*m)
+			m=m+1
+		n=n+1
+		m=1
+		print()
+m = int(input('plz input the first num:'))
+n = int(input('plz input the second num:'))
+nnm(m,n)
