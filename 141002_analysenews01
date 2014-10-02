@@ -1,7 +1,12 @@
 '''
-To take the news from Google News and save it as a txt file
+Here is the question: Something new in the world today? 
 
-This is first step. <using Python 3.4>
+Precisely, what are the keywords that everyone in the earth cares today?
+
+To solve the Q, I got an idea: 1. to collect the news and 2. to find the cumulative frequency of the keywords in the news
+
+
+This is first step to take the news from Google News and save it as a txt file.  <using Python 3.4>
 '''
 
 import urllib.request
