@@ -1,0 +1,79 @@
+'''
+This tool is from his great work: https://gist.github.com/bryanyang0528/fd83acb74ff5db1728a3#file-gistfile1-py
+
+And I use it to analyse the news.
+
+This is the second step. <using Python 2.7>
+'''
+
+import codecs   
+import operator
+
+cutlist = "<>/:：;；,、”’，.。！？?\"\'\\\n\r《》“”!@#$%^&*()".decode("utf-8")  
+
+def cutSentence(text_path, keywords): 
+    text = codecs.open(text_path,"r","utf-8")   
+    sentence = ""
+    textList = []
+       
+    for line in text.readlines():
+        line = line.strip() 
+        
+        for keyword in keywords:  
+            line = "".join(line.split(keyword))
+            
+        for word in line:
+            if word not in cutlist: 
+                sentence += word
+                #print sentence
+            else:
+                textList.append(sentence) 
+                sentence = ""
+                #print textList
+    return textList
+
+def ngram(textLists,n,minFreq): 
+    words=[]     
+    words_freq={}
+    result= []
+    for textList in textLists:
+        for w in range(len(textList)-(n-1)): 
+            words.append(textList[w:w+n])    
+
+    for word in words:
+        if word not in words_freq:               
+            words_freq[word] = words.count(word) 
+ 
+    words_freq = sorted(words_freq.iteritems(),key=operator.itemgetter(1),reverse=True) #change words_freq from dict to list 
+    
+    for word in words_freq:
+        if word[1] >= minFreq:
+            result.append(word)
+            
+    return result 
+
+
+def longTermPriority(path, maxTermLength, minFreq):
+    longTerms=[]          
+    longTermsFreq=[]      
+    
+    for i in range(maxTermLength,1,-1):
+        text_list = cutSentence(path,longTerms)
+        #print len(text_list)
+        words_freq = ngram(text_list,i, minFreq)
+        #print i
+
+    
+        for word_freq in words_freq:
+            longTerms.append(word_freq[0])
+            #print word_freq[0]
+            longTermsFreq.append(word_freq) 
+            #print word_freq
+    
+    return longTermsFreq
+
+longTermFreq = longTermPriority("newsnew.txt",6,5)   ##  to read the news from Google news
+
+
+for i in longTermFreq:
+    print i[0],i[1]
