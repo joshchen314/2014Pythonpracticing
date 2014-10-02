@@ -1,0 +1,144 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'calc.ui'
+#
+# Created: Mon Aug 11 20:32:02 2014
+#      by: PyQt4 UI code generator 4.10.4
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt4 import QtCore, QtGui
+
+try:
+	_fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+	def _fromUtf8(s):
+		return s
+
+try:
+	_encoding = QtGui.QApplication.UnicodeUTF8
+	def _translate(context, text, disambig):
+		return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+	def _translate(context, text, disambig):
+		return QtGui.QApplication.translate(context, text, disambig)
+
+class Ui_Dialog(object):
+	def setupUi(self, Dialog):
+		self.op= 0   #實體變數, 其他都可以用到
+		self.num= 0
+		self.num2=0
+		self.num3=0
+		Dialog.setObjectName(_fromUtf8("Dialog"))
+		Dialog.resize(722, 452)
+		self.lineEdit = QtGui.QLineEdit(Dialog)
+		self.lineEdit.setGeometry(QtCore.QRect(10, 20, 701, 111))
+		self.lineEdit.setObjectName(_fromUtf8("lineEdit"))
+		self.pushButton_ADD = QtGui.QPushButton(Dialog)
+		self.pushButton_ADD.setGeometry(QtCore.QRect(10, 150, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_ADD.setFont(font)
+		self.pushButton_ADD.setObjectName(_fromUtf8("pushButton_ADD"))
+		self.pushButton_SUB = QtGui.QPushButton(Dialog)
+		self.pushButton_SUB.setGeometry(QtCore.QRect(250, 150, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_SUB.setFont(font)
+		self.pushButton_SUB.setObjectName(_fromUtf8("pushButton_SUB"))
+		self.pushButton_CL = QtGui.QPushButton(Dialog)
+		self.pushButton_CL.setGeometry(QtCore.QRect(490, 150, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_CL.setFont(font)
+		self.pushButton_CL.setObjectName(_fromUtf8("pushButton_CL"))
+		self.pushButton_EQ = QtGui.QPushButton(Dialog)
+		self.pushButton_EQ.setGeometry(QtCore.QRect(490, 300, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_EQ.setFont(font)
+		self.pushButton_EQ.setObjectName(_fromUtf8("pushButton_EQ"))
+		self.pushButton_MULTI = QtGui.QPushButton(Dialog)
+		self.pushButton_MULTI.setGeometry(QtCore.QRect(10, 300, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_MULTI.setFont(font)
+		self.pushButton_MULTI.setObjectName(_fromUtf8("pushButton_MULTI"))
+		self.pushButton_DIV = QtGui.QPushButton(Dialog)
+		self.pushButton_DIV.setGeometry(QtCore.QRect(250, 300, 221, 131))
+		font = QtGui.QFont()
+		font.setFamily(_fromUtf8("Agency FB"))
+		font.setPointSize(48)
+		self.pushButton_DIV.setFont(font)
+		self.pushButton_DIV.setObjectName(_fromUtf8("pushButton_DIV"))
+
+		self.lineEdit.setText(str(self.num))
+
+		self.retranslateUi(Dialog)
+		QtCore.QMetaObject.connectSlotsByName(Dialog)
+		
+		QtCore.QObject.connect(self.pushButton_ADD, QtCore.SIGNAL('clicked()'), self.ADD)
+		QtCore.QObject.connect(self.pushButton_SUB, QtCore.SIGNAL('clicked()'), self.SUB)
+		QtCore.QObject.connect(self.pushButton_MULTI, QtCore.SIGNAL('clicked()'), self.MULTI)
+		QtCore.QObject.connect(self.pushButton_DIV, QtCore.SIGNAL('clicked()'), self.DIV)
+		QtCore.QObject.connect(self.pushButton_EQ, QtCore.SIGNAL('clicked()'), self.EQ)
+		QtCore.QObject.connect(self.pushButton_CL, QtCore.SIGNAL('clicked()'), self.CL)
+
+
+	def ADD(self):
+		self.op=1
+		self.num = int(self.lineEdit.text())
+		self.lineEdit.setText(self.lineEdit.text())
+	def SUB(self):
+		self.op=2
+		self.num = int(self.lineEdit.text())
+		self.lineEdit.setText(self.lineEdit.text())
+	def MULTI(self):
+		self.op=3
+		self.num = int(self.lineEdit.text())
+		self.lineEdit.setText(self.lineEdit.text())
+	def DIV(self):
+		self.op=4
+		self.num = int(self.lineEdit.text())
+		self.lineEdit.setText(self.lineEdit.text())
+	def EQ(self):
+		self.num2 = int(self.lineEdit.text())
+		if self.op==1:
+			self.num3=self.num+self.num2
+		if self.op==2:
+			self.num3=self.num-self.num2
+		if self.op==3:
+			self.num3=self.num*self.num2
+		if self.op==4:
+			self.num3=self.num/self.num2
+		self.lineEdit.setText(str(self.num3))
+		print(self.lineEdit.text())
+	def CL(self):
+		self.lineEdit.clear()
+		self.num=0
+		self.lineEdit.setText(str(self.num))
+		#self.lineEdit.setText('0')
+		
+	def retranslateUi(self, Dialog):
+		Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
+		self.pushButton_ADD.setText(_translate("Dialog", "+", None))
+		self.pushButton_SUB.setText(_translate("Dialog", "-", None))
+		self.pushButton_CL.setText(_translate("Dialog", "C", None))
+		self.pushButton_EQ.setText(_translate("Dialog", "=", None))
+		self.pushButton_MULTI.setText(_translate("Dialog", "*", None))
+		self.pushButton_DIV.setText(_translate("Dialog", "/", None))
+
+
+if __name__ == "__main__":
+	import sys
+	app =QtGui.QApplication(sys.argv)
+	Dialog = QtGui.QDialog()
+	ui = Ui_Dialog()
+	ui.setupUi(Dialog)
+	Dialog.show()
+	sys.exit(app.exec_())
