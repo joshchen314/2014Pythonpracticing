@@ -1,0 +1,31 @@
+'''
+To read data from csv file, to select something and to save is as a new csv file
+'''
+
+f = open('stores_old.csv', 'r')
+b=[]
+bb=[',']
+for line in f.readlines():
+	a=line.split(',')
+	b.append(a[0])
+	b.append(a[3])
+	b.append(a[5])
+	b.append(a[6])
+	b.append('\r\n')
+#print(b)
+f.close()
+#print(a)
+
+b.insert(0,' ')
+#print(b)
+
+
+c=','.join(b)
+
+
+print(c)
+
+
+file = open('stores_new.csv', 'w')
+file.write(c)
+file.close()
