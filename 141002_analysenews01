@@ -22,7 +22,7 @@ class myparser(HTMLParser):
 		self.numbers = []
 	def handle_data(self, data):
 		'''
-		if self.isNumber == 2 :
+		if self.isNumber == 2 :  ## to take the title of the news is useless to calculate cumulative frequency
 			print(data)
 			b.append(data)
 			#self.numbers.extend(data.split('、'))
