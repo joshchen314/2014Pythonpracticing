@@ -1,0 +1,18 @@
+a=input('input a number: ')
+b=input('input another number: ')
+try:
+	if a.isdigit():
+		m=int(a)
+	else :
+		m=a
+	if b.isdigit():
+		n=int(b)
+	else :
+		n=b
+	print(m/n)
+except NameError:
+	print("There is an error，NameError")
+except ZeroDivisionError:
+	print("There is an error，no division by zero")
+except TypeError:
+	print("There is an error，no entering the characters")
