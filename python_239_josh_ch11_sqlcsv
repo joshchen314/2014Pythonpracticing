@@ -1,3 +1,5 @@
+# starbucks.sqlite is the sqlite3 version of the store_old.csv file
+
 import csv
 import sqlite3
 conn = sqlite3.connect('starbucks.sqlite')
