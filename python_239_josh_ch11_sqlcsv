@@ -1,0 +1,17 @@
+import csv
+import sqlite3
+conn = sqlite3.connect('starbucks.sqlite')
+curs =conn.cursor()
+conn.commit()
+curs.execute("select sid, name, tel, wifi from stores")
+
+out_file = open('stores_new2.csv', 'w', newline='')
+writer = csv.writer(out_file)
+
+for store in curs.fetchall():
+	print(store)
+	writer.writerow(store)
+  
+curs.close()
+conn.close()
+out_file.close()
